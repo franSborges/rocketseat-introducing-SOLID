@@ -10,6 +10,11 @@ class ShowUserProfileUseCase {
 
   execute({ user_id }: IRequest): User {
     // Complete aqui
+    const checkUserAlreadyExists = this.usersRepository.findById(user_id);
+    if (!checkUserAlreadyExists) {
+      throw new Error("User does not exist");
+    }
+    return checkUserAlreadyExists;
   }
 }
 
